@@ -5,6 +5,7 @@ let gameLoop;
 const snake = [{ top: 250, left: 250 }];
 let direction = 'right';
 let apples = [];
+let score = 0;
 
 // Function to start the game
 function startGame() {
@@ -35,6 +36,7 @@ function checkAppleCollision() {
     if (apples[i].top === snake[0].top && apples[i].left === snake[0].left) {
       apples.splice(i, 1); // Remove the apple from the array
       generateApple(); // Generate a new apple
+      score++;
       return true;
     }
   }
@@ -78,11 +80,22 @@ function game() {
   if (checkSelfCollision()) {
     clearInterval(gameLoop);
 
+    let highScore = localStorage.getItem('highScore');
+    if (!highScore) {
+      highScore = 0;
+    }
+    if (score > highScore) {
+      highScore = score;
+      localStorage.setItem('highScore', highScore);
+      document.getElementById('highScore').textContent = 'High Score: ' + highScore;
+    }
+
     // Draw game over screen
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'black';
     ctx.font = '25px Arial';
-    ctx.fillText('Game Over', 10, 30);
+    ctx.fillText('Game Over. Your score: ' + score, 10, 30);
+    ctx.fillText('Highscore: ' + highScore, 10, 60);
     return;
   }
 

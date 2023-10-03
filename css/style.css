@@ -1,5 +1,6 @@
 body {
     color: #000; /* Black text */
+    background-color: #000;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,4 +16,43 @@ canvas {
     height: 70vmin; /* 70% of the viewport height */
     max-width: 100%; /* Ensure it doesn't overflow */
     max-height: 100%; /* Ensure it doesn't overflow */
+}
+
+#gameCanvas {
+    background-color: #c7f0d8; /* Old Nokia screens had a greenish tint */
+    border: 16px solid #333; /* Dark border around the screen */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for 3D effect */
+}
+
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 70vmin; /* 70% of the viewport width */
+    height: 70vmin; /* 70% of the viewport height */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    max-height: 100%; /* Ensure it doesn't overflow */
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        flex-direction: row;
+    }
+
+    .button-container {
+        grid-template-columns: repeat(3, 1fr);
+        width: 70vmin; /* 70% of the viewport width */
+        height: 70vmin; /* 70% of the viewport height */
+    }
+}
+.button-container button {
+    background-color: #333; /* Dark gray background */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    border-radius: 50%; /* Round buttons */
+    width: 100%; /* Adjust as needed */
+    height: 100%; /* Adjust as needed */
+    font-size: 20px; /* Adjust as needed */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for 3D effect */
 }

@@ -132,6 +132,28 @@ window.addEventListener('keydown', function (e) {
   changeDirection(e.key);
   e.preventDefault();
 });
+document.addEventListener('DOMContentLoaded', (event) => {
+  const buttons = document.querySelectorAll('.button-container button');
+
+  buttons.forEach((button, index) => {
+      button.addEventListener('click', (event) => {
+          switch(index) {
+              case 1: // Button 2
+                  window.dispatchEvent(new KeyboardEvent('keydown', {'key':'ArrowUp'}));
+                  break;
+              case 3: // Button 4
+                  window.dispatchEvent(new KeyboardEvent('keydown', {'key':'ArrowLeft'}));
+                  break;
+              case 5: // Button 6
+                  window.dispatchEvent(new KeyboardEvent('keydown', {'key':'ArrowRight'}));
+                  break;
+              case 7: // Button 8
+                  window.dispatchEvent(new KeyboardEvent('keydown', {'key':'ArrowDown'}));
+                  break;
+          }
+      });
+  });
+});
 
 // Start the game when the window loads
 window.addEventListener('load', startGame);

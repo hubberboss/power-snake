@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const buttons = document.querySelectorAll('.button-container button');
 
   buttons.forEach((button, index) => {
-      button.addEventListener('click', (event) => {
+      const handleButtonClick = (event) => {
           switch(index) {
               case 1: // Button 2
                   window.dispatchEvent(new KeyboardEvent('keydown', {'key':'ArrowUp'}));
@@ -164,9 +164,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                   window.dispatchEvent(new KeyboardEvent('keydown', {'key':'ArrowDown'}));
                   break;
           }
-      });
+      };
+
+      button.addEventListener('click', handleButtonClick);
+      button.addEventListener('touchstart', handleButtonClick);
   });
 });
-
 // Start the game when the window loads
 window.addEventListener('load', startGame);
